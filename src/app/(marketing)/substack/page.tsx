@@ -8,7 +8,7 @@ export default async function SubstackPage() {
   const { posts } = await getSubstackPosts(8);
 
   // Substack URL — update NEXT_PUBLIC_SUBSTACK_URL in .env.local when confirmed
-  const substackUrl = process.env.NEXT_PUBLIC_SUBSTACK_URL ?? "#";
+  const substackUrl = process.env.NEXT_PUBLIC_SUBSTACK_URL ?? "https://carsondougherty.substack.com/";
 
   return (
     <>

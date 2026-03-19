@@ -5,7 +5,7 @@ import FloatingSparkles from "@/components/marketing/FloatingSparkles";
 import FadeIn from "@/components/motion/FadeIn";
 import StaggerChildren, { StaggerItem } from "@/components/motion/StaggerChildren";
 
-const substackUrl = process.env.NEXT_PUBLIC_SUBSTACK_URL ?? "#";
+const substackUrl = process.env.NEXT_PUBLIC_SUBSTACK_URL ?? "https://carsondougherty.substack.com/";
 
 export default function HomePage() {
   return (
