@@ -18,6 +18,7 @@ export default function HomePage() {
             src="/images/carson-headshot-1.jpg"
             alt="Carson Dougherty"
             fill
+            sizes="(max-width: 768px) 100vw, 50vw"
             className="object-cover object-[50%_25%] md:object-[50%_15%]"
             priority
           />
@@ -97,6 +98,8 @@ export default function HomePage() {
               src="/images/carson-stirling.jpg"
               alt="Carson Dougherty"
               fill
+              sizes="(max-width: 768px) 100vw, 896px"
+              loading="lazy"
               className="object-cover object-center"
             />
           </FadeIn>
@@ -195,6 +198,8 @@ export default function HomePage() {
                   src="/images/morning-grounding-thumb.svg"
                   alt="Morning Grounding Practice"
                   fill
+                  sizes="(max-width: 640px) 100vw, 128px"
+                  loading="lazy"
                   className="object-cover"
                 />
               </div>

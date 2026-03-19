@@ -35,6 +35,7 @@ export default function BookASessionPage() {
           src="/images/carson-dougherty-book-a-session.jpg"
           alt="Book a Session"
           fill
+          sizes="100vw"
           className="object-cover object-center"
           priority
         />

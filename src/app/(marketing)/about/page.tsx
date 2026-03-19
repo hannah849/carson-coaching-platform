@@ -26,6 +26,7 @@ export default function AboutPage() {
                 src="/images/carson-headshot-2.jpg"
                 alt="Carson Dougherty"
                 fill
+                sizes="(max-width: 768px) 100vw, 50vw"
                 className="object-cover object-top"
               />
             </FadeIn>

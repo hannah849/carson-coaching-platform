@@ -11,6 +11,7 @@ export default function ContactPage() {
           src="/images/Carson-on-rocks.jpg"
           alt="Contact"
           fill
+          sizes="100vw"
           className="object-cover object-center"
           priority
         />

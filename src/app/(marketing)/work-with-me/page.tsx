@@ -64,6 +64,7 @@ export default function WorkWithMePage() {
             src="/images/carson-full-shot-2.jpg"
             alt="Carson Dougherty"
             fill
+            sizes="(max-width: 768px) 100vw, 50vw"
             className="object-cover object-[50%_15%]"
             priority
           />

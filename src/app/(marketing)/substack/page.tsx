@@ -20,6 +20,7 @@ export default async function SubstackPage() {
             src="/images/carson-sitting.jpg"
             alt="Carson Dougherty"
             fill
+            sizes="(max-width: 768px) 100vw, 50vw"
             className="object-cover object-center"
             priority
           />
