@@ -13,12 +13,12 @@ export default function HomePage() {
       {/* Hero — split layout: photo left, text right (Gabby-style) */}
       <section className="flex flex-col md:flex-row min-h-screen border-b border-[var(--border)]">
         {/* Photo — stacks on top on mobile, left panel on desktop */}
-        <div className="relative w-full aspect-[4/3] md:aspect-auto md:w-1/2 md:min-h-screen shrink-0">
+        <div className="relative w-full aspect-[3/4] sm:aspect-[4/3] md:aspect-auto md:w-1/2 md:min-h-screen shrink-0">
           <Image
             src="/images/carson-headshot-1.jpg"
             alt="Carson Dougherty"
             fill
-            className="object-cover object-[50%_15%]"
+            className="object-cover object-[50%_25%] md:object-[50%_15%]"
             priority
           />
         </div>
@@ -189,8 +189,8 @@ export default function HomePage() {
             </div>
           </FadeIn>
           <FadeIn delay={0.1} className="rounded-lg overflow-hidden border border-[var(--border)] [box-shadow:var(--shadow-sm)]">
-            <div className="flex p-6 gap-6">
-              <div className="relative w-32 shrink-0 rounded-lg overflow-hidden">
+            <div className="flex flex-col sm:flex-row p-6 gap-6">
+              <div className="relative w-full sm:w-32 aspect-[4/3] sm:aspect-auto shrink-0 rounded-lg overflow-hidden">
                 <Image
                   src="/images/morning-grounding-thumb.svg"
                   alt="Morning Grounding Practice"

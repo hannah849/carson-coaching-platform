@@ -1,3 +1,6 @@
+"use client";
+
+import { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 
@@ -10,6 +13,8 @@ const navLinks = [
 ];
 
 export default function Header() {
+  const [menuOpen, setMenuOpen] = useState(false);
+
   return (
     <header className="w-full border-b border-[var(--border)] bg-[var(--background)] sticky top-0 z-50">
       <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
@@ -45,12 +50,67 @@ export default function Header() {
           </Link>
           <Link
             href="/login"
-            className="text-sm text-[var(--foreground)] hover:text-[var(--heading)] transition-colors"
+            className="hidden md:inline-block text-sm text-[var(--foreground)] hover:text-[var(--heading)] transition-colors"
           >
             Login
           </Link>
+
+          {/* Mobile hamburger */}
+          <button
+            onClick={() => setMenuOpen(!menuOpen)}
+            className="md:hidden flex flex-col justify-center items-center w-10 h-10 gap-[5px]"
+            aria-label="Toggle navigation menu"
+          >
+            <span
+              className={`block w-5 h-[1.5px] bg-[var(--foreground)] transition-all duration-300 ${
+                menuOpen ? "rotate-45 translate-y-[6.5px]" : ""
+              }`}
+            />
+            <span
+              className={`block w-5 h-[1.5px] bg-[var(--foreground)] transition-all duration-300 ${
+                menuOpen ? "opacity-0" : ""
+              }`}
+            />
+            <span
+              className={`block w-5 h-[1.5px] bg-[var(--foreground)] transition-all duration-300 ${
+                menuOpen ? "-rotate-45 -translate-y-[6.5px]" : ""
+              }`}
+            />
+          </button>
         </div>
       </div>
+
+      {/* Mobile menu */}
+      {menuOpen && (
+        <div className="md:hidden border-t border-[var(--border)] bg-[var(--background)]">
+          <nav className="max-w-7xl mx-auto px-6 py-6 flex flex-col gap-5">
+            {navLinks.map((link) => (
+              <Link
+                key={link.href}
+                href={link.href}
+                onClick={() => setMenuOpen(false)}
+                className="text-base text-[var(--foreground)] hover:text-[var(--heading)] transition-colors"
+              >
+                {link.label}
+              </Link>
+            ))}
+            <Link
+              href="/login"
+              onClick={() => setMenuOpen(false)}
+              className="text-base text-[var(--foreground)] hover:text-[var(--heading)] transition-colors"
+            >
+              Login
+            </Link>
+            <Link
+              href="/book-a-session"
+              onClick={() => setMenuOpen(false)}
+              className="mt-2 block text-center px-6 py-3 bg-accent text-white text-base font-medium rounded-md hover:opacity-90 transition-opacity"
+            >
+              Book a Session
+            </Link>
+          </nav>
+        </div>
+      )}
     </header>
   );
 }
