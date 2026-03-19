@@ -29,7 +29,7 @@ const cormorant = Cormorant({
   display: "swap",
 });
 
-const siteUrl = "https://carsondougherty.com";
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://carson-coaching-platform.vercel.app";
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
