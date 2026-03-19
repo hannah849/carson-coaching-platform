@@ -34,7 +34,7 @@ export default async function DashboardPage() {
         .eq("user_id", user.id)
         .order("created_at", { ascending: false });
 
-      entitlements = (data as EntitlementRow[]) ?? [];
+      entitlements = (data as unknown as EntitlementRow[]) ?? [];
     }
   } catch {
     // Supabase error — show empty state

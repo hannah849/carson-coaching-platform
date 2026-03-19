@@ -123,7 +123,7 @@ async function fulfillPurchase(session: Stripe.Checkout.Session) {
 }
 
 async function resolveUserId(
-  supabase: ReturnType<typeof createClient>,
+  supabase: ReturnType<typeof createServiceClient>,
   session: Stripe.Checkout.Session
 ): Promise<string | null> {
   // Prefer the user ID passed at checkout time (logged-in purchase)
