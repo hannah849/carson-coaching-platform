@@ -1,0 +1,675 @@
+Carson Dougherty Platform Build Brief
+Project Summary
+Build a custom website and lightweight business platform for Carson Dougherty, C.Ht., a subconscious and intuitive alignment coach. This site will replace her Squarespace website and become the central hub of her business.
+The platform should do four main things well:
+	•	Present Carson’s brand in a polished, grounded, professional way 
+	•	Grow her email list through lead magnets and nurture funnels 
+	•	Sell digital products directly on her website 
+	•	Allow visitors to book paid sessions through a smooth branded booking flow 
+This should feel like a custom, elevated experience without overengineering features Carson will not actually use.
+The project should also be built in a way that creates a strong case study and reusable framework for future service-based coach or creator websites.
+
+Part 1: Ideal Site Structure / Wireframe-Level Overview
+Primary Goal of the Site
+The site is Carson’s main headquarters.
+It should help a visitor move through this general journey:
+	•	Discover Carson 
+	•	Understand what she does 
+	•	Join her email list and receive a free resource 
+	•	Purchase a digital product 
+	•	Book a session 
+	•	Return later to access purchases and book again 
+Navigation Structure
+Recommended top navigation:
+	•	Home 
+	•	Work With Me 
+	•	Meditations & Tools 
+	•	Substack 
+	•	About 
+	•	Book a Session 
+Possible utility items in top right:
+	•	Log In 
+	•	Cart 
+	•	Join the Newsletter 
+Recommended footer:
+	•	About 
+	•	Book a Session 
+	•	Digital Products 
+	•	Substack 
+	•	Contact 
+	•	Privacy Policy 
+	•	Terms 
+	•	Instagram 
+	•	TikTok 
+
+Page-by-Page Structure
+1. Home Page
+Purpose
+Introduce Carson, quickly establish credibility and vibe, and move visitors toward either email signup, digital products, or booking.
+Sections
+	•	Hero 
+	•	clear headline 
+	•	short subheadline 
+	•	primary CTA: Book a Session 
+	•	secondary CTA: Get the Free Meditation 
+	•	Intro to Carson’s work 
+	•	what she helps with 
+	•	how her work is different 
+	•	mystical + grounded positioning 
+	•	Lead magnet signup 
+	•	free meditation or free resource 
+	•	email capture form 
+	•	Signature areas of work 
+	•	subconscious rewiring 
+	•	intuition 
+	•	deconditioning 
+	•	aligned living 
+	•	Featured offers 
+	•	one-on-one sessions 
+	•	digital meditations 
+	•	Substack membership 
+	•	Social proof 
+	•	testimonials if available 
+	•	otherwise a credibility block with professional imagery and her story 
+	•	Substack feature section 
+	•	explain what readers get 
+	•	CTA to subscribe 
+	•	Final CTA section 
+	•	Book a Session 
+	•	Shop Digital Tools 
+
+2. About Page
+Purpose
+Build trust and emotional connection while clearly explaining Carson’s approach.
+Sections
+	•	Hero intro 
+	•	Carson’s story 
+	•	Her philosophy and approach 
+	•	What makes her different 
+	•	Professional photo section 
+	•	CTA to book or explore products 
+
+3. Work With Me Page
+Purpose
+Explain the ways someone can work with Carson.
+Sections
+	•	Intro 
+	•	One-on-one sessions 
+	•	Packages 
+	•	Who this is for 
+	•	What clients can expect 
+	•	FAQs 
+	•	CTA to book 
+This page should feel high-conversion and practical.
+
+4. Book a Session Page
+Purpose
+Give a smooth booking experience without building a custom scheduler.
+Recommendation
+Use Acuity embed inside a fully custom branded page.
+Sections
+	•	Intro 
+	•	Session options and descriptions 
+	•	What happens after booking 
+	•	Acuity embed 
+	•	FAQs / reassurance 
+This page should make Acuity feel like part of the site, not like an awkward external widget.
+
+5. Meditations & Tools Store Page
+Purpose
+Serve as the digital product shop.
+Sections
+	•	Hero / intro 
+	•	Product grid 
+	•	Product cards with title, short description, price, CTA 
+	•	Optional category filters later 
+	•	FAQ around digital access and refunds 
+
+6. Individual Product Page
+Purpose
+Sell a specific digital product.
+Sections
+	•	Product title 
+	•	Product image or cover art 
+	•	Description 
+	•	What’s included 
+	•	Who it’s for 
+	•	Price 
+	•	Buy now button 
+	•	Related products 
+
+7. Substack Page
+Purpose
+Position Substack as an important companion platform without making it her main headquarters.
+Sections
+	•	Why subscribe 
+	•	What she writes about 
+	•	Free vs paid value 
+	•	CTA to subscribe on Substack 
+
+8. Free Resource / Lead Magnet Landing Page
+Purpose
+Capture email addresses for her lead magnet funnel.
+Sections
+	•	Strong headline 
+	•	What the free resource is 
+	•	Benefits 
+	•	Email capture form 
+	•	Short note about what happens next 
+Could also be used for ads or direct links.
+
+9. Customer Dashboard
+Purpose
+Let users log in and access what they purchased.
+Sections
+	•	Welcome / account overview 
+	•	Purchased products 
+	•	Session packages 
+	•	Booking quick link 
+	•	Account settings 
+This should be lightweight and clear, not overbuilt.
+
+10. Contact Page
+Simple contact form plus optional email and social links.
+
+Part 2: Database Schema Overview
+This schema is designed to be practical, not bloated. It should support digital products, purchases, basic customer accounts, and session packages.
+Recommended backend: Supabase.
+
+Core Tables
+1. users
+Purpose: store authenticated site users
+Fields:
+	•	id (uuid, primary key) 
+	•	email (text, unique) 
+	•	full_name (text, nullable) 
+	•	created_at (timestamp) 
+	•	updated_at (timestamp) 
+Notes:
+	•	Use Supabase Auth for authentication 
+	•	This table can mirror auth users and store profile details 
+
+2. products
+Purpose: digital products sold on the site
+Fields:
+	•	id (uuid, primary key) 
+	•	title (text) 
+	•	slug (text, unique) 
+	•	short_description (text) 
+	•	full_description (text) 
+	•	price_cents (integer) 
+	•	status (text) — draft, active, archived 
+	•	cover_image_url (text) 
+	•	file_url (text) 
+	•	file_type (text) — mp3, pdf, zip, etc. 
+	•	stripe_product_id (text) 
+	•	stripe_price_id (text) 
+	•	created_at (timestamp) 
+	•	updated_at (timestamp) 
+Notes:
+	•	Carson should be able to add products simply 
+	•	Status allows her to draft products before publishing 
+
+3. purchases
+Purpose: record all successful purchases
+Fields:
+	•	id (uuid, primary key) 
+	•	user_id (uuid, foreign key to users) 
+	•	stripe_checkout_session_id (text) 
+	•	stripe_payment_intent_id (text, nullable) 
+	•	total_cents (integer) 
+	•	currency (text) 
+	•	status (text) — paid, refunded, failed 
+	•	purchase_type (text) — digital_product, session_package 
+	•	created_at (timestamp) 
+
+4. purchase_items
+Purpose: support multiple line items in a purchase if needed
+Fields:
+	•	id (uuid, primary key) 
+	•	purchase_id (uuid, foreign key to purchases) 
+	•	product_id (uuid, nullable, foreign key to products) 
+	•	package_id (uuid, nullable, foreign key to session_packages) 
+	•	quantity (integer) 
+	•	unit_price_cents (integer) 
+	•	created_at (timestamp) 
+This makes the system cleaner and future-friendly.
+
+5. user_products
+Purpose: entitlements table showing which users have access to which products
+Fields:
+	•	id (uuid, primary key) 
+	•	user_id (uuid, foreign key to users) 
+	•	product_id (uuid, foreign key to products) 
+	•	granted_at (timestamp) 
+	•	source_purchase_id (uuid, foreign key to purchases) 
+Notes:
+	•	Use this to populate the customer dashboard 
+	•	This is the cleanest way to control access 
+
+6. session_packages
+Purpose: represent coaching packages for sale
+Fields:
+	•	id (uuid, primary key) 
+	•	title (text) 
+	•	slug (text, unique) 
+	•	description (text) 
+	•	session_count (integer) 
+	•	price_cents (integer) 
+	•	status (text) 
+	•	stripe_product_id (text) 
+	•	stripe_price_id (text) 
+	•	created_at (timestamp) 
+	•	updated_at (timestamp) 
+Examples:
+	•	1 session 
+	•	3-session package 
+	•	monthly container 
+
+7. user_packages
+Purpose: track which users own which session packages
+Fields:
+	•	id (uuid, primary key) 
+	•	user_id (uuid, foreign key) 
+	•	package_id (uuid, foreign key) 
+	•	total_sessions (integer) 
+	•	sessions_used (integer) 
+	•	status (text) — active, completed, expired 
+	•	granted_at (timestamp) 
+	•	source_purchase_id (uuid, foreign key) 
+Notes:
+	•	Even if Carson manually manages fulfillment at first, this is still useful 
+	•	Customer dashboard can show remaining sessions 
+
+8. email_signups
+Purpose: capture lead magnet and newsletter signups locally
+Fields:
+	•	id (uuid, primary key) 
+	•	email (text) 
+	•	first_name (text, nullable) 
+	•	source (text) — homepage, lead magnet page, footer, popup 
+	•	lead_magnet_slug (text, nullable) 
+	•	convertkit_subscriber_id (text, nullable) 
+	•	created_at (timestamp) 
+Notes:
+	•	Even if ConvertKit is the main email platform, storing this locally can be useful for tracking form source 
+
+9. lead_magnets
+Purpose: define free resources
+Fields:
+	•	id (uuid, primary key) 
+	•	title (text) 
+	•	slug (text, unique) 
+	•	description (text) 
+	•	file_url (text) 
+	•	status (text) 
+	•	created_at (timestamp) 
+	•	updated_at (timestamp) 
+
+10. admin_settings
+Purpose: store site-level settings if needed later
+Fields:
+	•	id (uuid, primary key) 
+	•	site_name (text) 
+	•	support_email (text) 
+	•	substack_url (text) 
+	•	instagram_url (text) 
+	•	tiktok_url (text) 
+	•	acuity_embed_url (text) 
+	•	updated_at (timestamp) 
+This can be optional, but useful.
+
+Relationships Summary
+	•	one user can have many purchases 
+	•	one purchase can have many purchase_items 
+	•	one user can have many user_products 
+	•	one user can have many user_packages 
+	•	one product can belong to many users through user_products 
+	•	one package can belong to many users through user_packages 
+
+Part 3: Stripe Product Architecture
+Goal: keep Stripe setup clean and easy to manage.
+Recommendation
+Use Stripe for:
+	•	digital product purchases 
+	•	coaching package purchases 
+	•	possibly individual session purchases if useful 
+Do not use Stripe for:
+	•	Substack memberships 
+	•	anything already functioning well inside Substack 
+Substack remains separate.
+
+Stripe Product Types
+Type A: Digital Products
+Each downloadable product has:
+	•	Stripe Product 
+	•	Stripe Price 
+Examples:
+	•	Guided Morning Meditation 
+	•	Intuition Reset Audio 
+	•	Subconscious Rewiring Journal PDF 
+Flow:
+	•	Customer clicks buy 
+	•	Stripe Checkout opens 
+	•	Payment succeeds 
+	•	Webhook fires 
+	•	User account created or matched 
+	•	Access granted in user_products 
+	•	Confirmation email sent 
+	•	Product appears in dashboard 
+
+Type B: Session Packages
+Each coaching package also has:
+	•	Stripe Product 
+	•	Stripe Price 
+Examples:
+	•	Single Session 
+	•	3 Session Package 
+	•	Monthly Support Package 
+Flow:
+	•	Customer purchases package 
+	•	Stripe webhook fires 
+	•	user_packages record created 
+	•	Dashboard shows package 
+	•	Customer uses Acuity to schedule sessions 
+	•	Carson manually tracks sessions at first, or later the package use could be partially automated 
+
+Stripe Structure Recommendation
+Use metadata heavily in Stripe.
+For products:
+	•	internal_type = digital_product or session_package 
+	•	internal_slug = product slug or package slug 
+For checkout:
+	•	customer_email 
+	•	source page 
+	•	campaign if relevant 
+This makes webhook logic easier.
+
+Checkout Modes
+For digital products
+Use Stripe Checkout hosted page.  That is simplest and safest.
+For packages
+Also use Stripe Checkout.
+Hosted checkout is ideal for this project because:
+	•	faster to build 
+	•	secure 
+	•	trustworthy 
+	•	easier for Carson to manage 
+
+Post-Purchase Logic
+When Stripe webhook receives checkout.session.completed:
+If digital product:
+	•	find or create user by email 
+	•	create purchase 
+	•	create purchase_item 
+	•	create user_products access record 
+	•	trigger email receipt / product access email 
+If session package:
+	•	find or create user 
+	•	create purchase 
+	•	create purchase_item 
+	•	create user_packages record 
+	•	trigger email with booking instructions 
+
+Refund Handling
+Keep refund handling simple at first.
+If refunded:
+	•	update purchase status 
+	•	optionally revoke access manually or via admin action later 
+No need to overbuild this now.
+
+Important Stripe Advice for Claude
+	•	use Stripe Checkout, not custom card forms 
+	•	use webhooks to grant access after payment 
+	•	do not trust client-side payment success alone 
+	•	store Stripe IDs in database 
+	•	keep test mode and live mode environments clearly separated 
+
+Part 4: User Flow Diagrams / Logic Flows
+Below are the main flows Claude should understand.
+
+Flow 1: New Visitor to Email Lead
+	•	Visitor lands on homepage 
+	•	Visitor sees Carson’s positioning and offer 
+	•	Visitor opts in for free meditation 
+	•	Form submits email 
+	•	Email stored locally in email_signups 
+	•	Email sent to ConvertKit 
+	•	Free resource delivery triggered 
+	•	User enters nurture sequence 
+Goal: build list and begin relationship
+
+Flow 2: New Visitor to Digital Product Purchase
+	•	Visitor lands on site 
+	•	Visitor browses Meditations & Tools 
+	•	Visitor clicks a product 
+	•	Visitor reads product detail page 
+	•	Visitor clicks Buy Now 
+	•	Stripe Checkout opens 
+	•	Payment succeeds 
+	•	Stripe webhook fires 
+	•	System creates or finds user account 
+	•	Product access is granted 
+	•	Customer receives confirmation email 
+	•	Customer can log in to dashboard and download product 
+Goal: seamless passive-income purchase flow
+
+Flow 3: New Visitor to Session Booking
+There are two possible models here.
+Option A: Book first, pay through Acuity
+If Acuity is handling payments, simpler but less unified.
+Option B: Buy package on site, then book through Acuity
+This is more premium and cleaner.
+Recommended model:
+	•	Sell packages on site via Stripe 
+	•	Use Acuity for scheduling actual appointment times 
+Flow:
+	•	Visitor learns about coaching 
+	•	Visitor chooses session or package 
+	•	Visitor purchases through Stripe 
+	•	Webhook creates package entitlement 
+	•	Confirmation page explains next step 
+	•	Visitor clicks through to booking page 
+	•	Visitor schedules through Acuity 
+	•	Carson delivers session 
+	•	Dashboard shows package owned 
+This keeps payment and packaging on-brand while still using Acuity’s scheduling power.
+
+Flow 4: Returning Customer Accesses Purchases
+	•	Returning customer logs in 
+	•	Lands on dashboard 
+	•	Sees purchased meditations 
+	•	Sees active packages 
+	•	Downloads files or books session 
+	•	Returns anytime later 
+Goal: make the site feel like a real platform, not just a brochure site
+
+Flow 5: Email Signup to Conversion Funnel
+	•	Visitor signs up for free resource 
+	•	Email 1 delivers free meditation 
+	•	Email 2 shares Carson’s philosophy/story 
+	•	Email 3 introduces a pain point or pattern 
+	•	Email 4 invites them to explore a paid digital product 
+	•	Email 5 invites them to book a session 
+	•	Long-term nurture continues through newsletter/Substack 
+This is mostly handled in ConvertKit, not custom-coded from scratch.
+
+Flow 6: Carson Adds a New Digital Product
+This is important because she needs a simple backend.
+Recommended admin flow:
+	•	Carson logs into admin area 
+	•	Clicks Add Product 
+	•	Uploads file 
+	•	Adds title 
+	•	Adds short description 
+	•	Adds full description 
+	•	Adds price 
+	•	Uploads cover image 
+	•	Publishes 
+System then:
+	•	creates product record 
+	•	uploads file to storage 
+	•	optionally creates Stripe product/price or allows linking to existing Stripe product 
+For the first version, you could even make the admin relatively simple and use a protected internal form.
+
+Strategic Recommendations for What to Build Now vs Later
+Build Now
+	•	custom marketing site 
+	•	Acuity booking page 
+	•	digital product store 
+	•	Stripe checkout 
+	•	customer login/dashboard 
+	•	lead magnet signup 
+	•	ConvertKit integration 
+	•	simple admin product upload flow 
+Delay Until Later
+	•	advanced CRM 
+	•	analytics dashboard 
+	•	deep client insights 
+	•	automated session usage sync with Acuity 
+	•	affiliate management 
+	•	complicated coupon logic 
+	•	full course platform 
+	•	mobile app 
+
+Recommended Technical Stack
+Use:
+	•	Next.js 
+	•	Tailwind CSS 
+	•	Vercel 
+	•	Supabase Auth 
+	•	Supabase Database 
+	•	Supabase Storage 
+	•	Stripe Checkout 
+	•	Stripe Webhooks 
+	•	ConvertKit API 
+	•	Acuity embed 
+This is the sweet spot between custom and practical.
+
+Recommended Build Order for Claude Code
+Phase 1: Project Foundation
+	•	initialize Next.js app 
+	•	configure Tailwind 
+	•	set up routing 
+	•	create layout, header, footer 
+	•	deploy to Vercel 
+	•	connect domain later 
+Phase 2: Public Marketing Pages
+	•	home 
+	•	about 
+	•	work with me 
+	•	substack 
+	•	contact 
+	•	booking 
+	•	store index 
+	•	product detail page template 
+Phase 3: Database and Auth Setup
+	•	Supabase project setup 
+	•	create schema 
+	•	configure auth 
+	•	protected dashboard route 
+Phase 4: Store + Stripe
+	•	create products table integration 
+	•	fetch/display active products 
+	•	build product detail pages 
+	•	build Stripe Checkout flow 
+	•	webhook logic 
+	•	purchase + entitlement creation 
+Phase 5: Customer Dashboard
+	•	login/signup flow 
+	•	purchased products display 
+	•	user packages display 
+	•	download links 
+	•	account basics 
+Phase 6: Email Capture
+	•	homepage email forms 
+	•	lead magnet page 
+	•	ConvertKit integration 
+	•	success states 
+Phase 7: Admin Tools
+	•	protected admin upload form for products 
+	•	product editing basics 
+	•	upload file to Supabase storage 
+	•	publish/unpublish control 
+Phase 8: Polish
+	•	SEO metadata 
+	•	responsive refinements 
+	•	image optimization 
+	•	empty states 
+	•	error handling 
+	•	confirmation pages 
+
+Suggested Questions Claude Should Help Solve
+When you paste this into Claude, ask it to help with:
+	•	Best folder structure for this app 
+	•	Best Supabase schema and migration files 
+	•	Best way to model Stripe webhooks 
+	•	Best admin architecture for a nontechnical client 
+	•	Best way to wrap Acuity inside a custom branded booking page 
+	•	Best way to handle auth for customers vs admin 
+	•	Best way to structure reusable components for future coach websites 
+
+Copy-Paste Prompt for Claude Code
+You can paste this directly:
+I am building a custom website and lightweight business platform for a client named Carson Dougherty, a subconscious and intuitive alignment coach.
+
+This site will replace her Squarespace site and serve as the main headquarters for her business.
+
+Core goals:
+1. polished marketing website
+2. digital product store for meditations and downloadable resources
+3. email capture with lead magnet
+4. booking flow using Acuity embed
+5. Stripe payments for digital products and coaching packages
+6. customer dashboard where users can log in and access purchased products and packages
+
+Substack will remain an important companion platform but not the main site.
+
+Recommended stack:
+- Next.js
+- Tailwind
+- Vercel
+- Supabase Auth
+- Supabase DB
+- Supabase Storage
+- Stripe Checkout + webhooks
+- ConvertKit API
+- Acuity embed
+
+Please help me break this into clear implementation steps and recommend a clean file structure.
+
+I want this built in a modular way so I can reuse the framework for other coaches later.
+
+Important constraints:
+- do not overengineer
+- prioritize elegance, simplicity, and maintainability
+- Carson is not highly technical, so admin workflows need to be simple
+- we are not building a full CRM
+- we are not building a full custom scheduler
+- we are using Acuity for scheduling
+- we do want a customer dashboard for purchased products and session packages
+- we do want a simple admin flow for adding digital products
+
+Please help me:
+1. propose an app architecture
+2. propose a folder structure
+3. propose Supabase tables and relationships
+4. propose Stripe integration flow
+5. propose admin authentication strategy
+6. break the work into small, safe implementation steps
+7. identify what should be built now vs deferred
+
+
+Final Strategic Note
+The most important discipline on this project is this:
+Do not let “custom platform” trick you into building enterprise software.
+What makes this impressive is not how many features it has.  What makes it impressive is that it feels:
+	•	tailored 
+	•	beautiful 
+	•	smooth 
+	•	credible 
+	•	easy for Carson to use 
+	•	smartly designed around her actual business 
+That is exactly what will make this a strong case study for your future technology solutions business.
+Next, I’d recommend we do one of two things: either write the exact phased sprint plan for Claude Code, or write the full sitemap plus page-by-page content strategy for Carson’s actual brand voice.
+

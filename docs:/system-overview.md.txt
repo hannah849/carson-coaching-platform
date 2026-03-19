@@ -1,0 +1,232 @@
+Carson Dougherty Platform — System Overview
+Core Goal
+Build a central online hub for Carson’s business that:
+• attracts new clients  • grows her email list  • sells digital products  • allows booking coaching sessions  • integrates with Substack  • delivers purchased content to customers
+The platform should feel professional, intuitive, and calm, reflecting Carson’s brand:  “mystical + grounded + practical.”
+
+High-Level System Architecture
+The platform will consist of six primary systems.
+1️⃣ Marketing Website  2️⃣ Booking System  3️⃣ Digital Product Store  4️⃣ Customer Dashboard  5️⃣ Email Capture + Lead Magnets  6️⃣ Email Nurture Automation
+These systems interact but should be built modularly.
+
+1. Marketing Website
+Purpose
+Primary home for Carson’s business.
+It should:
+• explain her work  • capture email leads  • direct users to book sessions  • direct users to buy digital products  • highlight Substack
+
+Core Pages
+Home  About Carson  Work With Carson  Book a Session  Digital Products  Substack  Free Resources  Contact
+
+Navigation Example
+Home  Work With Me  Meditations & Tools  Substack  About  Book a Session
+
+Homepage Flow
+Hero section  Short explanation of her work
+↓
+Email capture (lead magnet)
+↓
+Explanation of her approach
+↓
+Digital product highlight
+↓
+Testimonials (future)
+↓
+Book session CTA
+↓
+Substack promotion
+
+2. Booking System
+Recommendation: Keep Acuity
+Reasons:
+• Carson already understands it  • handles calendar syncing  • handles reminders  • handles cancellations  • avoids complexity
+Instead of replacing it, we:
+embed and style it inside the custom website.
+
+Booking Page UX
+User lands on booking page.
+Page shows:
+Session description  Session options  Calendar booking interface (Acuity embedded)
+
+Payment Recommendation
+Streamline to Stripe only.
+Reasons:
+• works with digital products  • works with subscriptions  • works with checkout  • widely supported in dev frameworks
+Remove:
+• Square  • Venmo (except rare cases)  • PayPal (optional)
+
+3. Digital Product Store
+This is one of the most important components.
+Carson needs a simple backend where she can:
+Upload product  Set price  Add description  Upload file
+Then customers can:
+Purchase product  Access product later
+
+Product Types
+Meditations (audio files)  PDF guides  Courses (future)
+
+Store Features
+Product catalog page  Product detail pages  Secure checkout  File delivery  Customer library
+
+Product Flow
+Customer selects product
+↓
+Stripe checkout
+↓
+Account created
+↓
+Product appears in dashboard
+↓
+Customer downloads file
+
+4. Customer Dashboard
+This is the Kajabi-like area.
+Users create accounts automatically when they purchase.
+Dashboard includes:
+Purchased meditations  Purchased packages  Download links  Booking link
+
+Dashboard Sections
+My Purchases  My Meditations  My Session Packages  Book a Session  Account Settings
+
+5. Email Capture + Lead Magnets
+Email capture is one of the highest priorities.
+Lead magnet:
+Free meditation download.
+
+Lead Magnet Flow
+User enters email
+↓
+Email added to list
+↓
+Free meditation delivered
+↓
+User enters nurture sequence
+
+Capture Locations
+Homepage  Blog pages  Resource page  Exit popup (optional)
+
+6. Email Nurture Automation
+You have three choices.
+Option 1 — Substack
+Not ideal for automation.
+Option 2 — ConvertKit / Beehiiv
+Great for creators.
+Option 3 — Resend + custom email system
+More complex.
+
+Recommendation
+Use ConvertKit.
+Reasons:
+• creator-friendly  • visual automation builder  • integrates with Stripe  • easy lead magnets  • easy segmentation
+
+Example Nurture Sequence
+Email 1  Deliver meditation
+Email 2  Story about Carson’s work
+Email 3  Explain subconscious conditioning
+Email 4  Invite them to explore digital products
+Email 5  Invite them to book session
+
+Platform Tech Stack Recommendation
+This is very developer-friendly and Claude-friendly.
+Frontend  Next.js
+Styling  Tailwind
+Hosting  Vercel
+Database  Supabase
+Payments  Stripe
+Email capture  ConvertKit API
+Booking  Acuity embed
+Auth system  Supabase Auth
+File storage  Supabase Storage
+
+Why This Stack
+It allows:
+• fast development  • scalability  • easy auth  • easy file storage  • easy Stripe integration
+Also perfect for future SaaS template reuse.
+
+Reusable Product Opportunity
+This system becomes:
+“The Coach Platform.”
+You could later sell it as:
+A website system for:
+coaches  healers  therapists  consultants
+Carson becomes Case Study #1.
+
+Claude Code Build Plan
+Now the most important part:
+Break it into small pieces.
+
+Phase 1 — Foundation
+Goal: create basic website.
+Steps:
+1️⃣ Create Next.js project
+2️⃣ Configure Tailwind
+3️⃣ Deploy to Vercel
+4️⃣ Set up domain
+5️⃣ Build navigation
+6️⃣ Build homepage
+
+Phase 2 — Static Pages
+Build pages:
+About  Work With Me  Substack  Contact
+
+Phase 3 — Booking Page
+Embed Acuity.
+Steps:
+Create booking page  Embed Acuity script  Style page  Add session descriptions
+
+Phase 4 — Stripe Setup
+Configure Stripe.
+Steps:
+Create Stripe account  Create products  Build checkout route  Test payments
+
+Phase 5 — Digital Product Store
+Create store.
+Steps:
+Create product database  Create product pages  Create checkout flow  Deliver files after purchase
+
+Phase 6 — Customer Accounts
+Steps:
+Add authentication  Create user dashboard  Show purchased products
+
+Phase 7 — Lead Magnet System
+Steps:
+Create email capture form  Connect to ConvertKit  Create free download delivery
+
+Phase 8 — Dashboard Enhancements
+Add:
+Download history  Session package tracking
+
+Phase 9 — Polish
+Add:
+animations  SEO metadata  image optimization
+
+Example Claude Prompt
+Here is something you could give Claude Code.
+
+Claude Prompt
+I am building a coaching platform for a client.
+The system should include:
+	•	marketing website 
+	•	digital product store 
+	•	customer dashboard 
+	•	email capture 
+	•	booking page (Acuity embed) 
+	•	Stripe payments 
+Tech stack:
+Next.js  Tailwind  Supabase  Stripe  Vercel
+Please help me break this into development steps and file structure.
+Focus on modular components.
+
+Important Advice
+Your biggest temptation will be:
+building too much too early.
+Start with:
+• website  • booking  • store  • lead magnet
+Then add:
+• dashboards  • automation
+
+My Strategic Recommendation
+For a case study, the most impressive elements will be:
+Beautiful website  Digital product store  Client dashboard  Lead magnet funnel
+Those four together look very powerful to small business owners.
+
